@@ -31,6 +31,8 @@ import retrofit.client.OkClient;
  */
 public final class RetrofitClientFactory {
 
+    private static final TraceRequestInterceptor TRACING_INTERCEPTOR = new TraceRequestInterceptor();
+
     private RetrofitClientFactory() {}
 
     private static Client newHttpClient(Optional<SSLSocketFactory> sslSocketFactory, OkHttpClientOptions options) {
@@ -61,6 +63,7 @@ public final class RetrofitClientFactory {
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(uri)
                 .setClient(client)
+                .setRequestInterceptor(TRACING_INTERCEPTOR)
                 .build();
         return restAdapter.create(type);
     }

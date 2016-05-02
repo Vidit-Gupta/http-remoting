@@ -5,6 +5,8 @@ dependencies {
     // ssl-config is not used in this project, but we depend on it here in order to provide
     // it transitively to users of retrofit-clients as a convenience.
     compile project(':ssl-config')
+    compile project(':tracing')
+
     compile libs.retrofit
     compile libs.okhttp
     compile libs.slf4j
@@ -12,6 +14,7 @@ dependencies {
     testCompile libs.hamcrest
     testCompile libs.junit
     testCompile libs.mockito
+    testCompile libs.mockwebserver
 
     processor libs.immutables
 }
